@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sistema de gestión para consultorios psiquiátricos - Administra pacientes, citas y historiales clínicos de forma segura y eficiente." />
+    <meta name="keywords" content="psiquiatría, gestión médica, pacientes, citas, historiales clínicos" />
+    <meta name="author" content="MiniMax Agent" />
+    
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <title>Sistema de Gestión Psiquiátrica</title>
+    
+    <style>
+      /* CSS crítico para evitar FOUC */
+      :root {
+        --background: 248 250 252; /* slate-50 */
+        --foreground: 15 23 42; /* slate-900 */
+        --card: 255 255 255;
+        --card-foreground: 15 23 42;
+        --popover: 255 255 255;
+        --popover-foreground: 15 23 42;
+        --primary: 20 184 166; /* teal-500 */
+        --primary-foreground: 255 255 255;
+        --secondary: 241 245 249; /* slate-100 */
+        --secondary-foreground: 15 23 42;
+        --muted: 241 245 249;
+        --muted-foreground: 100 116 139; /* slate-500 */
+        --accent: 241 245 249;
+        --accent-foreground: 15 23 42;
+        --destructive: 239 68 68; /* red-500 */
+        --destructive-foreground: 255 255 255;
+        --border: 226 232 240; /* slate-200 */
+        --input: 226 232 240;
+        --ring: 20 184 166;
+        --radius: 0.5rem;
+      }
+      
+      .dark {
+        --background: 15 23 42;
+        --foreground: 248 250 252;
+        --card: 30 41 59; /* slate-800 */
+        --card-foreground: 248 250 252;
+        --popover: 30 41 59;
+        --popover-foreground: 248 250 252;
+        --primary: 20 184 166;
+        --primary-foreground: 255 255 255;
+        --secondary: 30 41 59;
+        --secondary-foreground: 248 250 252;
+        --muted: 30 41 59;
+        --muted-foreground: 148 163 184; /* slate-400 */
+        --accent: 30 41 59;
+        --accent-foreground: 248 250 252;
+        --destructive: 239 68 68;
+        --destructive-foreground: 255 255 255;
+        --border: 30 41 59;
+        --input: 30 41 59;
+        --ring: 20 184 166;
+      }
+      
+      * {
+        border-color: hsl(var(--border));
+      }
+      
+      body {
+        background-color: hsl(var(--background));
+        color: hsl(var(--foreground));
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+      }
+      
+      /* Loading spinner */
+      .loading-spinner {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        border: 3px solid hsl(var(--border));
+        border-top: 3px solid hsl(var(--primary));
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        z-index: 9999;
+      }
+      
+      @keyframes spin {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+      }
+      
+      /* Hide loading spinner when app loads */
+      #root:not(:empty) + .loading-spinner {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div class="loading-spinner"></div>
+    
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

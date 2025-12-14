@@ -22,16 +22,7 @@
     "removeComments": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"],
-      "@/types/*": ["src/types/*"],
-      "@/models/*": ["src/models/*"],
-      "@/middleware/*": ["src/middleware/*"],
-      "@/routes/*": ["src/routes/*"],
-      "@/utils/*": ["src/utils/*"],
-      "@/config/*": ["src/config/*"]
-    }
+
   },
   "include": [
     "src/**/*"

@@ -1,10 +1,11 @@
 import dotenv from 'dotenv';
-import path from 'path';
 
+// Cargar variables de entorno
 dotenv.config();
 
+// Configuración simplificada para Railway
 const config = {
-  // Base de datos Supabase
+  // Base de datos
   database: {
     url: process.env.DATABASE_URL || '',
     host: process.env.SUPABASE_DB_HOST || process.env.SUPABASE_URL?.replace('https://', '').replace('.supabase.co', '.supabase.co'),
@@ -16,40 +17,46 @@ const config = {
 
   // Servidor
   server: {
-    port: parseInt(process.env.PORT || '5000'),
-    env: process.env.NODE_ENV || 'development',
+    port: parseInt(process.env.PORT || '3001'),
+    env: process.env.NODE_ENV || 'production',
     apiPrefix: process.env.API_PREFIX || '/api/v1',
   },
 
   // Autenticación
   auth: {
-    jwtSecret: process.env.JWT_SECRET || 'fallback-secret-key',
+    jwtSecret: process.env.JWT_SECRET || 'default-secret-change-this-in-production',
     jwtExpiresIn: process.env.JWT_EXPIRES_IN || '24h',
-    refreshTokenSecret: process.env.REFRESH_TOKEN_SECRET || 'fallback-refresh-secret',
+    refreshTokenSecret: process.env.REFRESH_TOKEN_SECRET || 'default-refresh-secret-change-this',
     refreshTokenExpiresIn: process.env.REFRESH_TOKEN_EXPIRES_IN || '7d',
     bcryptRounds: parseInt(process.env.BCRYPT_ROUNDS || '12'),
   },
 
   // CORS
   cors: {
-    origin: process.env.CORS_ORIGIN || process.env.FRONTEND_URL || 'http://localhost:3000',
+    origin: process.env.CORS_ORIGIN || '*',
   },
 
   // Rate Limiting
   rateLimit: {
-    windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS || '900000'), // 15 minutos
+    windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS || '900000'),
     maxRequests: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS || '100'),
   },
 
   // Logging
   logging: {
     level: process.env.LOG_LEVEL || 'info',
-    file: process.env.LOG_FILE || 'logs/app.log',
   },
 
-  // Configuración de producción
+  // Configuración de entorno
   isProduction: process.env.NODE_ENV === 'production',
   isDevelopment: process.env.NODE_ENV === 'development',
+
+  // Variables de Supabase
+  supabase: {
+    url: process.env.SUPABASE_URL || '',
+    anonKey: process.env.SUPABASE_ANON_KEY || '',
+    serviceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY || '',
+  }
 };
 
 export default config;

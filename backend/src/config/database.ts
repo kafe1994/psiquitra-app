@@ -1,23 +1,22 @@
 import { Pool } from 'pg';
-import config from '@/config';
 
 class Database {
   private pool: Pool;
 
   constructor() {
+    // Usar variables de entorno directamente
     this.pool = new Pool({
-      host: config.database.host,
-      port: config.database.port,
-      database: config.database.name,
-      user: config.database.user,
-      password: config.database.password,
-      max: 20, // máximo número de conexiones en el pool
+      host: process.env.SUPABASE_DB_HOST || 'localhost',
+      port: parseInt(process.env.SUPABASE_DB_PORT || '5432'),
+      database: process.env.SUPABASE_DB_NAME || 'postgres',
+      user: process.env.SUPABASE_DB_USER || 'postgres',
+      password: process.env.SUPABASE_DB_PASSWORD || '',
+      max: 20,
       idleTimeoutMillis: 30000,
       connectionTimeoutMillis: 2000,
-      ssl: config.isProduction ? { rejectUnauthorized: false } : false,
+      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
     });
 
-    // Manejar eventos de conexión
     this.pool.on('connect', () => {
       console.log('✅ Nueva conexión a la base de datos establecida');
     });

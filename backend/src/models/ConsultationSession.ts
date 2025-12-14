@@ -1,5 +1,5 @@
 import { Database } from '../types';
-import { supabase } from '../config/database';
+import { supabase } from '../config/supabase';
 
 export type ConsultationSession = Database['public']['Tables']['consultation_sessions']['Row'];
 export type ConsultationSessionInsert = Database['public']['Tables']['consultation_sessions']['Insert'];

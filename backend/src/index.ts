@@ -3,8 +3,8 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import path from 'path';
-import config from '@/config';
-import database from '@/config/database';
+import config from './config';
+import database from './config/database';
 
 // Middleware
 import { 
@@ -13,15 +13,15 @@ import {
   requestLogger, 
   requestId, 
   corsHandler 
-} from '@/middleware/rateLimit';
-import { errorHandler, notFoundHandler } from '@/middleware/errorHandler';
+} from './middleware/rateLimit';
+import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 
 // Importar rutas
-import authRoutes from '@/routes/auth';
-import patientRoutes from '@/routes/patients';
-import appointmentRoutes from '@/routes/appointments';
-import dashboardRoutes from '@/routes/dashboard';
-import clinicalRoutes from '@/routes/clinical';
+import authRoutes from './routes/auth';
+import patientRoutes from './routes/patients';
+import appointmentRoutes from './routes/appointments';
+import dashboardRoutes from './routes/dashboard';
+import clinicalRoutes from './routes/clinical';
 
 class Server {
   public app: express.Application;
